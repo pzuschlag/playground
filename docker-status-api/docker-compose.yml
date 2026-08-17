@@ -1,0 +1,11 @@
+services:
+  docker-status:
+    image: python:3.13-alpine
+    container_name: docker-status
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./server.py:/app/server.py
+    command: python3 /app/server.py
